@@ -54,3 +54,46 @@ a full release.
 
 If you require support, please head over to the [My Naturewatch Forum](https://mynaturewatch.net/forum).
 
+## Development Setup
+
+To run My Naturewatch on your desktop for development, you'll need set up your
+python environment with the correct dependencies, and build the web client.
+
+### Python dependencies
+
+It is recommended to create a fresh python virtual. Once you have the python
+environment of you choice activated, run this:
+
+```terminal
+pip install --upgrade -r requirements-dev.txt
+```
+
+### Building the Web Client
+
+The flask application of My Naturewatch will only run the api and serve the
+client files. The web client that you would ordinarily see however is implemented as a react application.
+Without building this application, the flask application will just come up with a "Not Found" error message.
+You will need a recent version of Node.Js, v14 and v16 both work.
+In the `static/client` folder, run the command to install the necessary dependencies for the web client:
+
+```terminal
+cd static/client
+npm install
+```
+
+Now you have two options:
+* If you want to **change the web client itself** then you will want to run the
+  react application with hot reload:
+  ```terminal
+	npm  start
+	```
+	You can now open the web client via http://localhost:3000 and make the changes you want.
+* If you want to **change the python code, but leave the web client unchanged**
+  then you'll want to simply build the web client code once and have it be
+  served by the My Naturewatch flask application:
+  ```terminal
+	npm run build
+	```
+	The result will be placed in `static/client/build` and be picked up by the
+	flask application automatically.  You can thus use the web client via
+	http://localhost:5000

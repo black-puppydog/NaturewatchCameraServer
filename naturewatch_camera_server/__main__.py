@@ -1,5 +1,9 @@
 from naturewatch_camera_server import create_app, create_error_app
-from picamera.exc import PiCameraError
+try:
+    from picamera.exc import PiCameraError
+except:
+    class PiCameraError(Exception):
+        pass
 import argparse
 import subprocess
 
